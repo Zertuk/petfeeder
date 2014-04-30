@@ -75,15 +75,54 @@ function ExtractNumber(value) {
 window.onload = function() {
 var beastWidth = 150;
 var beast = document.getElementById('monster');
+var explode = document.createElement('audio');
+explode.src = 'explode.wav'
+var eatSound = document.createElement('audio');
+eatSound.src = 'yum.mp3';
 
+var food = document.getElementById('food');
+var foodX = food.clientWidth;
+var foodY = food.clientHeight;
+console.log(foodX);
+console.log(foodY);
 
-function newWidth() {
+var beastX = beast.clientWidth;
+var beastY = beast.clientHeight;
+console.log(beastX);
+console.log(beastY);
+
+function checkDistance() {
+	dist = food.distanceTo(beast);
+	if (dist < 50) {
+		console.log('collide');
+	}
+	else {
+		console.log('no collide')
+	}
+}
+
+function addWidth() {
 	beastWidth = beastWidth + 50;
 	beast.style.width = beastWidth + 'px';
-	console.log(beastWidth);
+	beastX = beast.clientWidth;
+	beastY = beast.clientHeight;
+	checkDistance();
+
+	if (beastWidth > 700) {
+		beast.src = 'explosion.png'
+		explode.play();
+	}
+	else {
+		eatSound.play();
+	}
+}
+
+function subWidth() {
+	beastWidth = beastWidth - 50;
+	beast.style.width = beastWidth + 'px';
 }
 
 beast.addEventListener('click', function() {
-	newWidth();
+	addWidth();
 })
 }

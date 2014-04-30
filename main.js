@@ -91,30 +91,30 @@ var beastY = beast.clientHeight;
 console.log(beastX);
 console.log(beastY);
 
-function checkDistance() {
-	dist = food.distanceTo(beast);
-	if (dist < 50) {
-		console.log('collide');
-	}
-	else {
-		console.log('no collide')
-	}
-}
+// function checkDistance() {
+// 	dist = food.distanceTo(beast);
+// 	if (dist < 50) {
+// 		console.log('collide');
+// 	}
+// 	else {
+// 		console.log('no collide')
+// 	}
+// }
 
 function addWidth() {
+	if (beastWidth < 700) {
 	beastWidth = beastWidth + 50;
 	beast.style.width = beastWidth + 'px';
 	beastX = beast.clientWidth;
 	beastY = beast.clientHeight;
-	checkDistance();
-
-	if (beastWidth > 700) {
+	// checkDistance();
+	eatSound.play();
+	}
+	else {
 		beast.src = 'explosion.png'
 		explode.play();
 	}
-	else {
-		eatSound.play();
-	}
+	
 }
 
 function subWidth() {
